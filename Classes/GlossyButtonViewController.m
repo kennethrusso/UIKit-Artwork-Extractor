@@ -144,18 +144,19 @@ static UIImage*(*GetTintedGlassButtonImage)(UIColor*, UIControlState) = NULL;
 		return;
 	}
 	
-	NSString *buttonName = @"glossyButton";
+    // "un-hardcode" the file name --kmr
+	NSString *buttonName; // = @"glossyButton";
 	NSString *xSuffix = scale > 1 ? [NSString stringWithFormat:@"@%gx", scale] : @"";
 	switch (state)
 	{
 		case UIControlStateNormal:
-			buttonName = [NSString stringWithFormat:@"glossyButton-normal%@.png", xSuffix];
+			buttonName = [NSString stringWithFormat:@"%@-normal%@.png", [[self.glossyButton.titleLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""] lowercaseString], xSuffix];
 			break;
 		case UIControlStateHighlighted:
-			buttonName = [NSString stringWithFormat:@"glossyButton-highlighted%@.png", xSuffix];
+			buttonName = [NSString stringWithFormat:@"%@-highlighted%@.png", [[self.glossyButton.titleLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""] lowercaseString], xSuffix];
 			break;
 		case UIControlStateDisabled:
-			buttonName = [NSString stringWithFormat:@"glossyButton-disabled%@.png", xSuffix];
+			buttonName = [NSString stringWithFormat:@"%@-disabled%@.png", [[self.glossyButton.titleLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""] lowercaseString], xSuffix];
 			break;
 	}
 	
